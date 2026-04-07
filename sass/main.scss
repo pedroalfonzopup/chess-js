@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#gameboard {
+    width: 640px;
+    height: 640px;
+    display: flex;
+    flex-wrap: wrap;
+    .black {background-color: rgb(36, 36, 36);}
+    .white {background-color: rgb(175, 175, 175);}
+}
+
+.square {
+    width: 80px;
+    height: 80px;
+    .black-piece {fill: black;}
+    .white-piece {fill: rgb(230, 230, 230);}
+    svg {
+        width: 60px;
+        height: 60px;
+        margin: 10px;
+    }
+}
