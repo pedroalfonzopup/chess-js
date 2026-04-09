@@ -17,6 +17,11 @@
   background-color: rgb(175, 175, 175);
 }
 
+.piece {
+  width: 80px;
+  height: 80px;
+}
+
 .square {
   width: 80px;
   height: 80px;
@@ -31,4 +36,10 @@
   width: 60px;
   height: 60px;
   margin: 10px;
+  pointer-events: none;
+}
+
+path {
+  pointer-events: none;
+  position: relative;
 }/*# sourceMappingURL=main.css.map */

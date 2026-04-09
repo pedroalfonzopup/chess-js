@@ -1,8 +1,10 @@
 const gameBoard = document.querySelector("#gameboard")
-const playerTurn = document.querySelector("#player-turn")
+const playerDisplay = document.querySelector("#player-display")
 const infoDisplay = document.querySelector("#info-display")
 const width = 8
 const lenght = 8
+let playerTurn = "white"
+playerDisplay.textContent = playerTurn
 
 const startPieces = [
     rook, knight, bishop, queen, king, bishop, knight, rook,
@@ -20,6 +22,7 @@ function createBoard() {
         const square = document.createElement('div')
         square.classList.add('square')
         square.innerHTML = piece
+        square.firstChild?.setAttribute('draggable', true)
         square.setAttribute('square-id', i)
 
         const row = Math.floor( (63 - i) / 8 ) + 1
@@ -37,3 +40,56 @@ function createBoard() {
 }
 
 createBoard()
+
+const allSquares = document.querySelectorAll(".square")
+
+allSquares.forEach( square => {
+    square.addEventListener('dragstart', dragStart)
+    square.addEventListener('dragover', dragOver)
+    square.addEventListener('drop', dragDrop)
+})
+
+
+function dragStart (event) {
+    startPosition = event.target.parentNode.getAttribute('square-id')
+    draggedPiece = event.target
+    console.log(draggedPiece)
+}
+
+let startPosition
+let draggedPiece
+
+function dragOver (event) {
+    event.preventDefault()
+    
+}
+
+function dragDrop (event) {
+    event.stopPropagation()
+
+    const taken = event.target.classList.contains("piece")
+    event.target.parentNode.append(draggedPiece)
+    //event.target.append(draggedPiece)
+    event.target.remove()
+    changePlayer()
+} 
+
+function changePlayer() {
+    if ( playerTurn === "white" ) {
+        playerTurn = "black"
+    } else playerTurn = "white"
+    playerDisplay.textContent = playerTurn
+}
+
+function reverseIds() {
+    const allSquares = document.querySelectorAll(".square")
+    allSquares.forEach((square, i ))
+}
+
+function revertIds() {
+
+}
+
+
+
+
