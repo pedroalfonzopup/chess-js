@@ -127,21 +127,35 @@ function checkIfValid(target) {
 
     switch(piece) {
         case 'pawn': { // ALL MOVES FOR PAWN
-            // MOVE 1 SQUARE FORWARD
-            if (startId + width === targetId && !takenByOpponent) {
-                return true
+                // MOVE 1 SQUARE FORWARD
+                if (startId + width === targetId && !takenByOpponent) {
+                    return true
+                }
+                // MOVE 2 SQUARES FORWARD
+                if (startRow.includes(startId) && startId + width * 2 === targetId && !takenByOpponent) {
+                    return true
+                }
+                // DIAGONAL TAKE
+                if ((startId + width + 1 === targetId || startId + width - 1 === targetId) && takenByOpponent) {
+                    return true
+                }
+                return false
             }
-            // MOVE 2 SQUARES FORWARD
-            if (startRow.includes(startId) && startId + width * 2 === targetId && !takenByOpponent) {
-                return true
+            break;
+        case 'knight': {
+                if ( startId + width * 2 + 1 === targetId ) {return true}
+                if ( startId + width * 2 - 1 === targetId ) {return true}
+                if ( startId - width * 2 + 1 === targetId ) {return true}
+                if ( startId - width * 2 - 1 === targetId ) {return true}
+                if ( startId - width -2 === targetId ) {return true}
+                if ( startId - width +2 === targetId ) {return true}
+                if ( startId + width -2 === targetId ) {return true}
+                if ( startId + width +2 === targetId ) {return true}
+                return false
             }
-            // DIAGONAL TAKE
-            if ((startId + width + 1 === targetId || startId + width - 1 === targetId) && takenByOpponent) {
-                return true
-            }
-            return false
-        }
-        
+            break;
+        case 'queen': {}
+        case 'king': {}
     }
     console.log(playerTurn)
 }
